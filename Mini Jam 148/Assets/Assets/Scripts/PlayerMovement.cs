@@ -31,12 +31,28 @@ public class PlayerMovement : MonoBehaviour
         }
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(Dash());
         }
 
         moveDirection = new Vector2(moveX, moveY).normalized;
+        //move speed test
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+            //moveSpeed = 2f;
+        //}
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            connectionCost(1);
+            Debug.Log(GameManager.gameManager.numConn.Connection);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            restoreConnection(1);
+            Debug.Log(GameManager.gameManager.numConn.Connection);
+        }
     }
 
     private void FixedUpdate()
@@ -59,5 +75,16 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void connectionCost(int cost)
+    {
+        GameManager.gameManager.numConn.ConnectionCost(cost);
+        
+    }
+
+    private void restoreConnection(int restore)
+    {
+        GameManager.gameManager.numConn.ConnectionRestore(restore);
     }
 }
