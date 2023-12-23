@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         //{
             //moveSpeed = 2f;
         //}
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             connectionCost(1);
             Debug.Log(GameManager.gameManager.numConn.Connection);

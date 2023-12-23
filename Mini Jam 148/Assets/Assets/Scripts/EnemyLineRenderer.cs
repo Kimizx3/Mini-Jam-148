@@ -44,4 +44,9 @@ public class EnemyLineRenderer : MonoBehaviour
     {
         isClicked = false;
     }
+
+    public bool IsLineActive()
+    {
+        return lineRenderer.enabled;
+    }
 }
