@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Transform Target;
     private Vector2 moveDirection;
+    private EnemyLineRenderer lineRendererScript;
 
     private void Awake()
     {
@@ -19,18 +20,27 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         Target = GameObject.FindGameObjectWithTag("Player").transform;
+        lineRendererScript = GetComponent<EnemyLineRenderer>();
     }
 
     private void Update()
     {
         float distToPlayer = Vector2.Distance(transform.position, Target.position);
 
-        if (distToPlayer < agroRange)
+
+        if (lineRendererScript.isConnected)
         {
+            // Regular chasing behavior
             ChasePlayer();
+        }
+        else if (distToPlayer < agroRange)
+        {
+            // Slower chasing behavior
+            ChasePlayerSlowly();
         }
         else
         {
+            // Stop chasing
             StopChasePlayer();
         }
     }
@@ -50,5 +60,16 @@ public class EnemyMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(0f, 0f);
     }
-     
+
+    private void ChasePlayerSlowly()
+    {
+        if (Target)
+        {
+            Vector3 direction = (Target.position - transform.position).normalized;
+            moveDirection = direction;
+            float slowSpeed = movementSpeed * 0.5f; // Reduce the speed to half, adjust as needed
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * slowSpeed;
+        }
+    }
+
 }

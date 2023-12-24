@@ -90,4 +90,31 @@ public class PlayerMovement : MonoBehaviour
         GameManager.gameManager.numConn.ConnectionRestore(restore);
         _counterUI.setCounter(GameManager.gameManager.numConn.Connection);
     }
+    //player connect Enemies count
+    private List<GameObject> connectedEnemies = new List<GameObject>();
+    private const int maxConnections = 6;
+
+    public bool AddConnection(GameObject enemy)
+    {
+        if (connectedEnemies.Count < maxConnections)
+        {
+            connectedEnemies.Add(enemy);
+            return true; // Connection successful
+        }
+        return false; // Connection failed
+    }
+
+    public void RemoveConnection(GameObject enemy)
+    {
+        if (connectedEnemies.Contains(enemy))
+        {
+            connectedEnemies.Remove(enemy);
+        }
+    }
+
+    // Use this to check if an enemy is already connected
+    public bool IsEnemyConnected(GameObject enemy)
+    {
+        return connectedEnemies.Contains(enemy);
+    }
 }
