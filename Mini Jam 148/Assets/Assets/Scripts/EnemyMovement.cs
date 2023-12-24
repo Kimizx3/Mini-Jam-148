@@ -25,6 +25,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        Transform chaseTarget = lineRendererScript.GetChaseTarget();
+
+        if (chaseTarget != null)
+        {
+            //Debug.Log(chaseTarget);
+            ChaseTarget(chaseTarget);
+        }
+        else
+        {
+            StopChasePlayer();
+        }
+        /*
         float distToPlayer = Vector2.Distance(transform.position, Target.position);
 
 
@@ -43,8 +55,16 @@ public class EnemyMovement : MonoBehaviour
             // Stop chasing
             StopChasePlayer();
         }
+        */
     }
-    
+
+    private void ChaseTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        moveDirection = direction;
+        rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * movementSpeed;
+    }
+
     private void ChasePlayer()
     {
         if (Target)
