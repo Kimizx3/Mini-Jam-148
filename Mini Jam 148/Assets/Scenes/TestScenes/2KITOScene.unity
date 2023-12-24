@@ -629,7 +629,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
 --- !u!4 &2194720343550657569
 Transform:
   m_ObjectHideFlags: 0
@@ -661,7 +661,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 6cca17cd61452184f834fc423ca5d6f0, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -774,9 +774,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0071594715}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5214783
+  m_Radius: 0.6
 --- !u!114 &6616778848301373761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,11 +803,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2194720343550657569}
   - component: {fileID: 5130327463393991549}
+  - component: {fileID: 6529742586726444477}
   - component: {fileID: 3541597098401639865}
   - component: {fileID: 6616778848301373761}
   - component: {fileID: 6722309664731813137}
   - component: {fileID: 6722309664731813139}
-  - component: {fileID: 6529742586726444477}
   - component: {fileID: 6722309664731813138}
   m_Layer: 0
   m_Name: Enemy
