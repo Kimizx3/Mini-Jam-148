@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PinkDot
+  - BlueDot
+  - StaticDot
+  - PushDot
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -11,10 +16,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Dots
+  - Player
+  - Blue
   - 
   - 
   - 

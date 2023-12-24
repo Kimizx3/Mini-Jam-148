@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,6 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public float dahsingTime = 0.2f;
     public float dashingCooldown = 1f;
     */
+    //Disable Link
+    private bool isLinked;
+    
+    public float growSpeed = 0.1f;
+    //public float cameraCoolDown = 3f;
+    public DistanceJoint2D dj;
+    
+    
     [SerializeField] private TrailRenderer tr;
     //Count Slider
     [SerializeField] private CounterUI _counterUI;
@@ -46,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
         */
+        
+        
+        DisableLink();
+        
+        
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         //move speed test
@@ -70,6 +84,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isLinked)
+        {
+            return;
+        }
         /*
         if (isDashing)
         {
@@ -103,6 +121,23 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
     */
+
+    private void DisableLink()
+    {
+        if (dj.distance <= 2f)
+        {
+            isLinked = true;
+            dj.distance += growSpeed * Time.deltaTime;
+            
+        }
+        if (dj.distance > 2f)
+        {
+            isLinked = false;
+            dj.enabled = false;
+        }
+    }
+    
+    //private void PlayerMovement
 
     /*
     private void connectionCost(int cost)
