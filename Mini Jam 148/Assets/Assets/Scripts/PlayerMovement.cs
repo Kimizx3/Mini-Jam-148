@@ -124,13 +124,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void DisableLink()
     {
-        if (dj.distance <= 2f)
+        if (dj.distance <= 4f)
         {
             isLinked = true;
             dj.distance += growSpeed * Time.deltaTime;
-            
         }
-        if (dj.distance > 2f)
+        if (dj.distance > 4f)
         {
             isLinked = false;
             dj.enabled = false;
