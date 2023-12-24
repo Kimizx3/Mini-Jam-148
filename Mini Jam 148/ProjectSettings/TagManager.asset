@@ -44,3 +44,6 @@ TagManager:
   - name: Player
     uniqueID: 3007677099
     locked: 0
+  - name: Pink
+    uniqueID: 2179990579
+    locked: 0
