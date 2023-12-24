@@ -5,61 +5,79 @@ using UnityEngine;
 public class NumOfEnergy 
 {
     //Fields
-    private float currentEnergy;
-    private float MaxEnergy;
-
-    private float EnergyRegenSpeed;
-
-    private bool pauseEnergyRegen = false;
+    private float _currentEnergy;
+    private float _currentMaxEnergy;
+    private float _energyRegenSpeed;
+    private bool _pauseEnergyRegen = false;
     //properties
     public float Energy
     {
         get
         {
-            return currentEnergy;
+            return _currentEnergy;
         }
         set
         {
-            currentEnergy = value;
+            _currentEnergy = value;
         }
     }
-    public int currentMaxEnergy
+    public float MaxEnergy
     {
         get
         {
-            return MaxEnergy;
+            return _currentMaxEnergy;
         }
         set
         {
-            MaxEnergy = value;
+            _currentMaxEnergy = value;
+        }
+    }
+
+    public float EnergyRengenSpeed
+    {
+        get
+        {
+            return _energyRegenSpeed;
+        }
+        set
+        {
+            _energyRegenSpeed = value;
+        }
+    }
+    public bool PauseEnergyRegen
+    {
+        get
+        {
+            return _pauseEnergyRegen;
+        }
+        set
+        {
+            _pauseEnergyRegen = value;
         }
     }
     
     // Constructor
-    public NumOfEnergy(int curEnergy, int maxEng)
+    public NumOfEnergy(float energy, float maxEng, float energyRegenSpeed, bool pauseEnergyRegen)
     {
-        currentEnergy = curEnergy;
-        MaxEnergy = maxEng;
+        _currentEnergy = energy;
+        _currentMaxEnergy = maxEng;
+        _energyRegenSpeed = energyRegenSpeed;
+        _pauseEnergyRegen = pauseEnergyRegen;
     }
     
     //Methods
-    public void EnergyCost(int engCost)
+    public void useEnergy(float engAmount)
     {
-        if (currentEnergy > 0)
+        if (_currentEnergy > 0)
         {
-            currentEnergy -= engCost;
+            _currentEnergy -= engAmount * Time.deltaTime;
         }
     }
-
-    public void EnergyRestore(int restoring)
+    public void regenEnergy()
     {
-        if (currentEnergy < MaxEnergy)
+        if (_currentEnergy < _currentMaxEnergy && !_pauseEnergyRegen)
         {
-            currentEnergy += restoring;
-        }
-        if (currentEnergy > MaxEnergy)
-        {
-            currentEnergy = MaxEnergy;
+            _currentEnergy += _energyRegenSpeed * Time.deltaTime;
         }
     }
 }

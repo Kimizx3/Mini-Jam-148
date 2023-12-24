@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnergyUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Slider energySlider;
+
+    private void Start()
     {
-        
+        energySlider = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setMaxEnergy(int maxEnergy)
     {
-        
+        energySlider.maxValue = maxEnergy;
+        energySlider.value = maxEnergy;
+    }
+
+    public void setEnergy(int energy)
+    {
+        energySlider.value = energy;
     }
 }

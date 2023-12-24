@@ -27,14 +27,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (distToPlayer < agroRange)
         {
-            //ChasePlayer();
+            ChasePlayer();
         }
         else
         {
-            //StopChasePlayer();
+            StopChasePlayer();
         }
     }
-    /*
+    
     private void ChasePlayer()
     {
         if (Target)
@@ -50,5 +50,5 @@ public class EnemyMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(0f, 0f);
     }
-     */
+     
 }
