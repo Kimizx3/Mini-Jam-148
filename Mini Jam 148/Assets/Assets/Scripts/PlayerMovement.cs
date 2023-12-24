@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     //Disable Link
     private bool isLinked;
     
-    public float growSpeed = 0.1f;
+    public float growSpeed = 0.25f;
     //public float cameraCoolDown = 3f;
     public DistanceJoint2D dj;
     
@@ -124,12 +124,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void DisableLink()
     {
-        if (dj.distance <= 4f)
+        if (dj.distance <= 2f)
         {
             isLinked = true;
             dj.distance += growSpeed * Time.deltaTime;
         }
-        if (dj.distance > 4f)
+        if (dj.distance > 2f)
         {
             isLinked = false;
             dj.enabled = false;
