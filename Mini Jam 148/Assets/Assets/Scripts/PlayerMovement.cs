@@ -70,24 +70,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-<<<<<<< Updated upstream
+        /*
         if (isDashing)
         {
             return;
         }
-
+        */
         // Adjust player speed based on number of connections
         int connections = Mathf.Min(connectedEnemies.Count, maxSpeedReductionCount);
         currentMoveSpeed = baseMoveSpeed * (1 - connections * speedReductionPerEnemy);
         currentMoveSpeed = Mathf.Max(currentMoveSpeed, 0); // Ensure speed doesn't go negative
         rb.MovePosition(rb.position + moveDirection * currentMoveSpeed * Time.fixedDeltaTime);
-=======
+
         //if (isDashing)
         //{
             //return;
         //}
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
->>>>>>> Stashed changes
+        //rb.MovePosition(rb.position + moveDirection * currentMoveSpeed * Time.fixedDeltaTime);
     }
 
     /*
