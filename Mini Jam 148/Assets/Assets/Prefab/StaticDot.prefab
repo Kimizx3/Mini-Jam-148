@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7804412843649943286}
   moveSpeed: 2
-  chaseRange: 5
+  chaseRange: 2
 --- !u!50 &7804412843649943286 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3541597096461186645, guid: f11accc6b77607c4e8a4c1f59bb5f3bb, type: 3}
