@@ -16,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     //Vector2 movement;
     Vector2 moveDirection;
     //Dash
+    /*
     [Header("Dash Setting")]
     private bool canDash = true;
     private bool isDashing;
     public float dashingPower = 12f;
     public float dahsingTime = 0.2f;
     public float dashingCooldown = 1f;
+    */
     [SerializeField] private TrailRenderer tr;
     //Count Slider
     [SerializeField] private CounterUI _counterUI;
@@ -35,16 +37,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDashing)
-        {
-            return;
-        }
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
+        
+        /*
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(Dash());
         }
+        */
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         //move speed test
@@ -52,21 +53,24 @@ public class PlayerMovement : MonoBehaviour
         //{
             //moveSpeed = 2f;
         //}
+        /*
         if (Input.GetKeyDown(KeyCode.X))
         {
-            connectionCost(1);
+            //connectionCost(1);
             Debug.Log(GameManager.gameManager.numConn.Connection);
         }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            restoreConnection(1);
+            //restoreConnection(1);
             Debug.Log(GameManager.gameManager.numConn.Connection);
         }
+        */
     }
 
     private void FixedUpdate()
     {
+<<<<<<< Updated upstream
         if (isDashing)
         {
             return;
@@ -77,8 +81,16 @@ public class PlayerMovement : MonoBehaviour
         currentMoveSpeed = baseMoveSpeed * (1 - connections * speedReductionPerEnemy);
         currentMoveSpeed = Mathf.Max(currentMoveSpeed, 0); // Ensure speed doesn't go negative
         rb.MovePosition(rb.position + moveDirection * currentMoveSpeed * Time.fixedDeltaTime);
+=======
+        //if (isDashing)
+        //{
+            //return;
+        //}
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+>>>>>>> Stashed changes
     }
 
+    /*
     private IEnumerator Dash()
     {
         canDash = false;
@@ -91,19 +103,24 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+    */
 
+    /*
     private void connectionCost(int cost)
     {
         GameManager.gameManager.numConn.ConnectionCost(cost);
         _counterUI.setCounter(GameManager.gameManager.numConn.Connection);
         
     }
+    
 
     private void restoreConnection(int restore)
     {
         GameManager.gameManager.numConn.ConnectionRestore(restore);
         _counterUI.setCounter(GameManager.gameManager.numConn.Connection);
     }
+    */
+    
     //player connect Enemies count
     private List<GameObject> connectedEnemies = new List<GameObject>();
     private const int maxConnections = 6;

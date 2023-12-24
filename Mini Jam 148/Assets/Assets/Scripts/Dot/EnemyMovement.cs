@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
         float distToPlayer = Vector2.Distance(transform.position, Target.position);
 
 
-        if (lineRendererScript.isConnected)
+        if (lineRendererScript.isConnected && Target)
         {
             // Regular chasing behavior
             ChasePlayer();
