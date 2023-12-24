@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public float dahsingTime = 0.2f;
     public float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
-    
+    //Count Slider
+    [SerializeField] private CounterUI _counterUI;
 
     // Update is called once per frame
     void Update()
@@ -80,11 +81,13 @@ public class PlayerMovement : MonoBehaviour
     private void connectionCost(int cost)
     {
         GameManager.gameManager.numConn.ConnectionCost(cost);
+        _counterUI.setCounter(GameManager.gameManager.numConn.Connection);
         
     }
 
     private void restoreConnection(int restore)
     {
         GameManager.gameManager.numConn.ConnectionRestore(restore);
+        _counterUI.setCounter(GameManager.gameManager.numConn.Connection);
     }
 }
