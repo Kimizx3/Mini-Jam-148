@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     //Player Movement [Horizontal + Vertical]
     [Header("Movement Setting")]
-    public float moveSpeed = 5f;
+    public float baseMoveSpeed = 5f;  // Base movement speed
+    private float currentMoveSpeed;   // Current movement speed
+    private const float speedReductionPerEnemy = 0.15f; // 15% speed reduction per enemy
+    private int maxSpeedReductionCount = 6; // Maximum number of enemies affecting speed
     public Rigidbody2D rb;
     //Vector2 movement;
     Vector2 moveDirection;
@@ -22,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     //Count Slider
     [SerializeField] private CounterUI _counterUI;
+
+
+    private void Start()
+    {
+        currentMoveSpeed = baseMoveSpeed; // Initialize current speed to base speed
+    }
 
     // Update is called once per frame
     void Update()
@@ -62,7 +71,12 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+        // Adjust player speed based on number of connections
+        int connections = Mathf.Min(connectedEnemies.Count, maxSpeedReductionCount);
+        currentMoveSpeed = baseMoveSpeed * (1 - connections * speedReductionPerEnemy);
+        currentMoveSpeed = Mathf.Max(currentMoveSpeed, 0); // Ensure speed doesn't go negative
+        rb.MovePosition(rb.position + moveDirection * currentMoveSpeed * Time.fixedDeltaTime);
     }
 
     private IEnumerator Dash()
