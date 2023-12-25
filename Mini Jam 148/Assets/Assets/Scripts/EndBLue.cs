@@ -14,7 +14,7 @@ public class EndBlue : MonoBehaviour
     private void Awake()
     {
         // Start the countdown after 60 seconds
-        StartCoroutine(StartSpawningAfterDelay(60f));
+        StartCoroutine(StartSpawningAfterDelay(65f));
     }
 
     private IEnumerator StartSpawningAfterDelay(float delay)
