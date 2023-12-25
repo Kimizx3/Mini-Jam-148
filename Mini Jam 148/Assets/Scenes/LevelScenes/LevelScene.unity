@@ -22036,6 +22036,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3367049824d043e458b02dd0133b9585, type: 3}
+--- !u!1 &746764558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746764560}
+  - component: {fileID: 746764559}
+  m_Layer: 0
+  m_Name: BlueSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746764559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746764558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaa848072d38a14bbfd64d1124bdb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endBluePrefab: {fileID: 4160192426443605959, guid: b1953f40b3073fb43be937e15b116640, type: 3}
+  minimumSpawnTime: 5
+  maximumSpawnTime: 10
+--- !u!4 &746764560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746764558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.9, y: 13.11, z: 2.4048166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &746804932 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4836207858253164398, guid: 3367049824d043e458b02dd0133b9585, type: 3}
@@ -66343,3 +66390,4 @@ SceneRoots:
   - {fileID: 2092333478}
   - {fileID: 1351755162}
   - {fileID: 1793074701}
+  - {fileID: 746764560}
