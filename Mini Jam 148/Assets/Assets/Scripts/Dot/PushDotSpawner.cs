@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 public class PushDotSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject pushDotPrefab;
+    [SerializeField] private AudioClip spawnSound; // AudioClip to play on spawn
+
+    private AudioSource audioSource; // AudioSource component
     public float minimumSpawnTime = 5f;
     public float maximumSpawnTime = 10f;
 
@@ -15,6 +18,11 @@ public class PushDotSpawner : MonoBehaviour
     {
         // Start the countdown after 60 seconds
         StartCoroutine(StartSpawningAfterDelay(60f));
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource component not found on the GameObject");
+        }
     }
 
     private IEnumerator StartSpawningAfterDelay(float delay)
@@ -46,6 +54,14 @@ public class PushDotSpawner : MonoBehaviour
     private void SpawnPushDot()
     {
         Instantiate(pushDotPrefab, transform.position, Quaternion.identity);
+        PlaySpawnSound();
+    }
+    private void PlaySpawnSound()
+    {
+        if (audioSource != null && spawnSound != null)
+        {
+            audioSource.PlayOneShot(spawnSound);
+        }
     }
 }
 

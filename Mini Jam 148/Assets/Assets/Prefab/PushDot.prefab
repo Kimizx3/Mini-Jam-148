@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushDot
       objectReference: {fileID: 0}
+    - target: {fileID: 6722309666121240316, guid: f11accc6b77607c4e8a4c1f59bb5f3bb, type: 3}
+      propertyPath: m_TagString
+      value: PushDot
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6616778849093239469, guid: f11accc6b77607c4e8a4c1f59bb5f3bb, type: 3}
     m_RemovedGameObjects: []

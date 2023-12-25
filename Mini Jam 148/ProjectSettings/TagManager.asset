@@ -9,6 +9,7 @@ TagManager:
   - StaticDot
   - PushDot
   - Goal
+  - Wall
   layers:
   - Default
   - TransparentFX

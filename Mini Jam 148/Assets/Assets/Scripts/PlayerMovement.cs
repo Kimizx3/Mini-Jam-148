@@ -14,6 +14,17 @@ public class PlayerMovement : MonoBehaviour
     private const float speedReductionPerEnemy = 0.15f; // 15% speed reduction per enemy
     private int maxSpeedReductionCount = 6; // Maximum number of enemies affecting speed
     public Rigidbody2D rb;
+
+
+    [SerializeField] private AudioClip collisionSound; // AudioClip to play on collision
+    private AudioSource audioSource; // AudioSource component
+    private Dictionary<GameObject, float> cooldownTimers = new Dictionary<GameObject, float>();
+    private const float cooldownDuration = 0.5f; // Cooldown duration in seconds
+
+    [SerializeField] private AudioClip wallCollisionSound; // AudioClip for Wall collisions
+
+
+
     //Vector2 movement;
     Vector2 moveDirection;
     //Dash
@@ -41,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentMoveSpeed = baseMoveSpeed; // Initialize current speed to base speed
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource component not found on the GameObject");
+        }
     }
 
     // Update is called once per frame
@@ -65,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         //move speed test
         //if (Input.GetKeyDown(KeyCode.T))
         //{
-            //moveSpeed = 2f;
+        //moveSpeed = 2f;
         //}
         /*
         if (Input.GetKeyDown(KeyCode.X))
@@ -80,6 +96,17 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(GameManager.gameManager.numConn.Connection);
         }
         */
+        // Update cooldown timers
+        var keys = new List<GameObject>(cooldownTimers.Keys);
+        foreach (var key in keys)
+        {
+            cooldownTimers[key] -= Time.deltaTime;
+            if (cooldownTimers[key] <= 0)
+            {
+                cooldownTimers.Remove(key);
+            }
+        }
+
     }
 
     private void FixedUpdate()
@@ -180,5 +207,38 @@ public class PlayerMovement : MonoBehaviour
     public bool IsEnemyConnected(GameObject enemy)
     {
         return connectedEnemies.Contains(enemy);
+    }
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.tag == "StaticDot" || collision.gameObject.tag == "PushDot") && CanPlayAudio(collision.gameObject))
+        {
+            PlayCollisionSound(collision.gameObject, collisionSound);
+        }
+        else if (collision.gameObject.tag == "Wall" && CanPlayAudio(collision.gameObject))
+        {
+            PlayCollisionSound(collision.gameObject, wallCollisionSound);
+        }
+    }
+
+    private void PlayCollisionSound(GameObject collidedObject, AudioClip sound)
+    {
+        audioSource.PlayOneShot(sound);
+        cooldownTimers[collidedObject] = cooldownDuration; // Set cooldown for this object
+    }
+
+    private bool CanPlayAudio(GameObject collidedObject)
+    {
+        if (cooldownTimers.ContainsKey(collidedObject))
+        {
+            if (cooldownTimers[collidedObject] > 0)
+            {
+                return false; // Still in cooldown
+            }
+        }
+        return true; // No cooldown or cooldown has ended
     }
 }
